@@ -1,5 +1,5 @@
-import 'package:codelab/generator_page.dart';
 import 'package:flutter/material.dart';
+import 'package:codelab/generator_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
