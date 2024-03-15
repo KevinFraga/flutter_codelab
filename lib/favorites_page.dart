@@ -1,4 +1,3 @@
-import 'package:codelab/big_card.dart';
 import 'package:codelab/my_app_state.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
