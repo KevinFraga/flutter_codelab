@@ -4,6 +4,8 @@ import 'package:codelab/my_app_state.dart';
 import 'package:codelab/big_card.dart';
 
 class GeneratorPage extends StatelessWidget {
+  const GeneratorPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -21,7 +23,7 @@ class GeneratorPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BigCard(pair: pair),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -31,16 +33,16 @@ class GeneratorPage extends StatelessWidget {
                       appState.toggleFavorite();
                     },
                     icon: Icon(icon),
-                    label: Text('Like'),
+                    label: const Text('Like'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
                     onPressed: () {
                       appState.getNext();
                     },
-                    child: Text('Next'),
+                    child: const Text('Next'),
                   ),
                 ],
               )

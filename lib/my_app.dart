@@ -1,3 +1,4 @@
+import 'package:codelab/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:codelab/my_app_state.dart';
@@ -16,7 +17,10 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         ),
-        home: HomePage(),
+        home: const SignIn(),
+        routes: {
+          '/logged_in': (context) => const HomePage(),
+        },
       ),
     );
   }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:codelab/generator_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -15,11 +17,11 @@ class _HomePageState extends State<HomePage> {
     Widget page;
     switch (selected) {
       case 0:
-        page = GeneratorPage();
+        page = const GeneratorPage();
         break;
 
       case 1:
-        page = FavoritePage();
+        page = const FavoritePage();
         break;
 
       default:
@@ -33,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             SafeArea(
               child: NavigationRail(
                 extended: constrains.maxWidth >= 600,
-                destinations: [
+                destinations: const [
                   NavigationRailDestination(
                     icon: Icon(Icons.home),
                     label: Text('Home'),
