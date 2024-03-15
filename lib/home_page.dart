@@ -1,3 +1,4 @@
+import 'package:codelab/favorites_page.dart';
 import 'package:flutter/material.dart';
 import 'package:codelab/generator_page.dart';
 
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
         break;
 
       case 1:
-        page = Placeholder();
+        page = FavoritePage();
         break;
 
       default:
