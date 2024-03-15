@@ -14,6 +14,10 @@ class _SignUpFormState extends State<SignUpForm> {
 
   double progress = 0;
 
+  void login() {
+    Navigator.of(context).pushNamed('/logged_in');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -21,9 +25,12 @@ class _SignUpFormState extends State<SignUpForm> {
         mainAxisSize: MainAxisSize.min,
         children: [
           LinearProgressIndicator(value: progress),
-          Text(
-            'Sign Up',
-            style: Theme.of(context).textTheme.headlineMedium,
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              'Sign Up',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(15),
@@ -52,22 +59,28 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
           ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.resolveWith((states) {
-                return states.contains(MaterialState.disabled)
-                    ? null
-                    : Colors.blue;
-              }),
-              backgroundColor: MaterialStateProperty.resolveWith((states) {
-                return states.contains(MaterialState.disabled)
-                    ? null
-                    : Colors.blue;
-              }),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.resolveWith((states) {
+                  return states.contains(MaterialState.disabled)
+                      ? null
+                      : Colors.blue;
+                }),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  return states.contains(MaterialState.disabled)
+                      ? null
+                      : Colors.blue;
+                }),
+              ),
+              onPressed: login,
+              child: Text(
+                'Sign In',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ),
-            onPressed: null,
-            child: const Text('Sign In'),
-          )
+          ),
         ],
       ),
     );
