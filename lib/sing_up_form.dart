@@ -1,3 +1,4 @@
+import 'package:codelab/animated_progress_bar.dart';
 import 'package:flutter/material.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -40,7 +41,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          LinearProgressIndicator(value: progress),
+          AnimatedProgressBar(value: progress),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
