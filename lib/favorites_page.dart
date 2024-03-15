@@ -9,15 +9,30 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
+    if (appState.favorites.isEmpty) {
+      return Container(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: Center(
+          child: Text('No favorites yet...'),
+        ),
+      );
+    }
+
     return Container(
       color: Theme.of(context).colorScheme.primaryContainer,
-      child: Center(
-        child: ListView(
-          children: [
-            Text('Favoritos: '),
-            for (WordPair word in appState.favorites) BigCard(pair: word),
-          ],
-        ),
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text('You have ${appState.favorites.length} favorites:'),
+          ),
+          for (WordPair word in appState.favorites)
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text(word.asPascalCase),
+              titleAlignment: ListTileTitleAlignment.center,
+            ),
+        ],
       ),
     );
   }
