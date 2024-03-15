@@ -18,9 +18,25 @@ class _SignUpFormState extends State<SignUpForm> {
     Navigator.of(context).pushNamed('/logged_in');
   }
 
+  void updateProgress() {
+    var prog = 0.0;
+    final controllers = [firstname, lastname, username];
+
+    for (final controller in controllers) {
+      if (controller.value.text.isNotEmpty) {
+        prog += 1 / controllers.length;
+      }
+    }
+
+    setState(() {
+      progress = prog;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      onChanged: updateProgress,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -74,7 +90,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       : Colors.blue;
                 }),
               ),
-              onPressed: login,
+              onPressed: progress == 1 ? login : null,
               child: Text(
                 'Sign In',
                 style: Theme.of(context).textTheme.labelMedium,
