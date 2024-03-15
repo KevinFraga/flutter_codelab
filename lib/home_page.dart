@@ -44,12 +44,20 @@ class _HomePageState extends State<HomePage> {
                     icon: Icon(Icons.favorite),
                     label: Text('Favorites'),
                   ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.logout),
+                    label: Text('Logout'),
+                  ),
                 ],
                 selectedIndex: selected,
                 onDestinationSelected: (value) {
-                  setState(() {
-                    selected = value;
-                  });
+                  if (value == 2) {
+                    Navigator.of(context).pop();
+                  } else {
+                    setState(() {
+                      selected = value;
+                    });
+                  }
                 },
               ),
             ),
