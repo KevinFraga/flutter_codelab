@@ -7,19 +7,24 @@ import 'package:codelab/home_page.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  final String title = 'Codelab';
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Codelab',
+        title: title,
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.indigo,
+            secondaryContainer: Colors.blueAccent,
+          ),
         ),
         home: const SignIn(),
         routes: {
-          '/logged_in': (context) => const HomePage(),
+          '/logged_in': (context) => HomePage(title: title),
         },
       ),
     );
