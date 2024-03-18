@@ -8,18 +8,18 @@ class DocumentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var metadata = document.getMetadata();
+    var (title, :modified) = document.getMetadata();
 
     return Column(
       children: [
         Center(
           child: Text(
-            metadata.$1,
+            title,
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         Center(
-          child: Text('Last modified: ${metadata.modified}'),
+          child: Text('Last modified: $modified'),
         ),
       ],
     );
