@@ -19,22 +19,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Widget page;
-    switch (selected) {
-      case 0:
-        page = const GeneratorPage();
-        break;
-
-      case 1:
-        page = const FavoritePage();
-        break;
-
-      case 2:
-        page = DocumentScreen(document: Document());
-        break;
-
-      default:
-        throw UnimplementedError('Unimplemented');
-    }
+    page = switch (selected) {
+      0 => const GeneratorPage(),
+      1 => const FavoritePage(),
+      2 => DocumentScreen(document: Document()),
+      _ => throw UnimplementedError('Unimplemented')
+    };
 
     return LayoutBuilder(builder: (context, constrains) {
       return Scaffold(
