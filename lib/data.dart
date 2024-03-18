@@ -4,6 +4,13 @@ class Document {
   final Map<String, Object?> _json;
 
   Document() : _json = jsonDecode(documentJson);
+
+  (String, {DateTime modified}) getMetadata() {
+    var title = 'Document';
+    var now = DateTime.now();
+
+    return (title, modified: now);
+  }
 }
 
 const documentJson = '''
