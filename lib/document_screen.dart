@@ -7,10 +7,27 @@ class DocumentScreen extends StatelessWidget {
 
   final Document document;
 
+  String formatDate(DateTime date) {
+    var today = DateTime.now();
+    var diff = date.difference(today);
+
+    return switch (diff) {
+      Duration(inDays: 0) => 'today',
+      Duration(inDays: 1) => 'tomorrow',
+      Duration(inDays: -1) => 'yesterday',
+      Duration(inDays: var days) when days > 7 => '${days ~/ 7} weeks from now',
+      Duration(inDays: var days) when days < -7 =>
+        '${days.abs() ~/ 7} weeks ago',
+      Duration(inDays: var days, isNegative: true) => '${days.abs()} days ago',
+      Duration(inDays: var days) => '$days days from now',
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     var (title, :modified) = document.getMetadata();
     var blocks = document.getBlocks();
+    var format = formatDate(modified);
 
     return Container(
       color: Theme.of(context).colorScheme.primaryContainer,
@@ -23,7 +40,7 @@ class DocumentScreen extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text('Last modified: $modified'),
+            child: Text('Last modified: $format'),
           ),
           Expanded(
             child: ListView.builder(
