@@ -33,23 +33,37 @@ class Document {
   }
 }
 
-class Block {
-  Block(this.type, this.text);
+sealed class Block {
+  Block();
 
-  final String type;
-  final String text;
-
-  factory Block.fromJson(Map<String, dynamic> json) {
-    if (json
-        case {
-          'type': var type,
-          'text': var text,
-        }) {
-      return Block(type, text);
-    }
-
-    throw const FormatException('Unexpected JSON format');
+  factory Block.fromJson(Map<String, Object?> json) {
+    return switch (json) {
+      {'type': 'h1', 'text': String text} => HeaderBlock(text),
+      {'type': 'p', 'text': String text} => ParagraphBlock(text),
+      {'type': 'checkbox', 'text': String text, 'checked': bool checked} =>
+        CheckboxBlock(text, checked),
+      _ => throw const FormatException('Unexpected JSON format'),
+    };
   }
+}
+
+class HeaderBlock extends Block {
+  HeaderBlock(this.text);
+
+  final String text;
+}
+
+class ParagraphBlock extends Block {
+  ParagraphBlock(this.text);
+
+  final String text;
+}
+
+class CheckboxBlock extends Block {
+  CheckboxBlock(this.text, this.checked);
+
+  final String text;
+  final bool checked;
 }
 
 const documentJson = '''
